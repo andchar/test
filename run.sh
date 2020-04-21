@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+#comment
 if [ $1 -eq 1 ]; then
     echo "Good"
     exit 0
