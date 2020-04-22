@@ -2,12 +2,19 @@ VERSION: 2.1
 jobs:
   build:
     docker:
-      - image: alpine # the primary container, where your job's commands are run
+      - image: gcc # the primary container, where your job's commands are run
     steps:
       - checkout # check out the code in the project directory
       - run:
-         name: Installing packages
-         command: apk add gcc libc-dev
-      - run:
          name: Compiling...
-         command: gcc -o test main.c
+         command: gcc -o hello_test main.c
+      - run:
+         name: Executing...
+         command: ./hello_test
+  deploy:
+    docker:
+      - image: nginx
+    steps:
+      - run:
+          name: starting nginx...
+          command: rc-service start nginx
